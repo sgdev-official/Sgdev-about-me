@@ -5,17 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Title -->
-    <title>sgdev HUB | Shubhomoy - PRO</title>
+    <title>sgdev HUB | Shubhomoy (sgdev-official)</title>
     
     <!-- Standard Meta Tags -->
-    <meta name="description" content="Official portfolio and dev hub of Shubhomoy (sgdev) — a 12-year-old Full-Stack Developer building AI web apps with HTML, CSS, JavaScript & APIs. Explore SAI, S-Front Studio, and games!">
-    <meta name="keywords" content="sgdev, Shubhomoy, Full Stack Developer, 12 year old coder, S-Front Studio, SAI, S-Mario, Web Developer Portfolio, Vercel Apps">
-    <meta name="author" content="Shubhomoy (sgdev)">
+    <meta name="description" content="Official portfolio and dev hub of Shubhomoy (sgdev-official) — 12-year-old Full-Stack Developer building AI web apps with HTML, CSS, JavaScript & APIs. Explore SAI, S-Front Studio, and open-source projects!">
+    <meta name="keywords" content="sgdev, sgdev-official, Shubhomoy, Full Stack Developer, 12 year old coder, S-Front Studio, SAI, S-Mario, Web Developer Portfolio, Vercel Apps">
+    <meta name="author" content="Shubhomoy (sgdev-official)">
     <meta name="robots" content="index, follow">
 
+    <!-- Schema.org Structured Data for Google Search & AI Overview -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shubhomoy",
+      "alternateName": ["sgdev", "sgdev-official"],
+      "url": "https://sgdev-about-me.vercel.app/",
+      "sameAs": [
+        "https://github.com/sgdev-official",
+        "https://dev.to/sgdev_sg_dev",
+        "https://www.behance.net/sgdev1",
+        "https://www.deviantart.com/sgdev111",
+        "https://www.reddit.com/user/sgdev111"
+      ],
+      "jobTitle": "Full-Stack Web & AI Application Developer"
+    }
+    </script>
+
     <!-- Open Graph Meta Tags (for WhatsApp, Facebook, LinkedIn previews) -->
-    <meta property="og:title" content="sgdev HUB | Shubhomoy Portfolio">
-    <meta property="og:description" content="Explore projects, downloads, and social links of 12-year-old Full-Stack & AI Developer Shubhomoy (sgdev). Download SAI APK/EXE, S-Front Studio & more!">
+    <meta property="og:title" content="sgdev HUB | Shubhomoy (sgdev-official)">
+    <meta property="og:description" content="Explore projects, downloads, and social links of 12-year-old Full-Stack & AI Developer Shubhomoy (sgdev-official). Download SAI APK/EXE, S-Front Studio & more!">
     <meta property="og:image" content="s.png">
     <meta property="og:url" content="https://sgdev-about-me.vercel.app/">
     <meta property="og:type" content="website">
@@ -23,7 +42,7 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="sgdev HUB | Shubhomoy Portfolio">
-    <meta name="twitter:description" content="Explore projects and tools by Shubhomoy (sgdev) — 12-Year-Old Full-Stack Developer.">
+    <meta name="twitter:description" content="Explore projects and tools by Shubhomoy (sgdev-official) — 12-Year-Old Full-Stack Developer.">
     <meta name="twitter:image" content="s.png">
 
     <!-- Favicon setting -->
@@ -300,6 +319,7 @@
         .link-btn:nth-child(9) { animation-delay: 1.8s; }
         .link-btn:nth-child(10) { animation-delay: 1.9s; }
         .link-btn:nth-child(11) { animation-delay: 2.0s; }
+        .link-btn:nth-child(12) { animation-delay: 2.1s; }
 
         @keyframes btnSlideIn {
             from { opacity: 0; transform: translateX(-20px); }
@@ -402,7 +422,7 @@
         <!-- DOWNLOADS SECTION -->
         <div class="section-title">🚀 Downloads & Projects</div>
         <div class="links-container">
-            <a href="https://github.com/s07114587-ops/sai-fronend/releases/tag/1.0.0" target="_blank" class="link-btn dl-btn">
+            <a href="https://github.com/sgdev-official/sai-fronend/releases/tag/1.0.0" target="_blank" class="link-btn dl-btn">
                 📱 Download SAI (APK for Phone)
             </a>
             <a href="https://sourceforge.net/projects/sai/" target="_blank" class="link-btn dl-btn">
@@ -422,10 +442,13 @@
         <!-- SOCIALS & PORTFOLIO SECTION -->
         <div class="section-title">🌐 Connect & Socials</div>
         <div class="links-container">
+            <a href="https://github.com/sgdev-official" target="_blank" class="link-btn">
+                🐙 GitHub Profile (sgdev-official)
+            </a>
             <a href="https://whatsapp.com/channel/0029Vb8g3tvGOj9uEIXyhw0b" target="_blank" class="link-btn whatsapp-btn">
                 💬 WhatsApp Channel
             </a>
-            <a href="https://shubhomoy.dnc.su/" target="_blank" class="link-btn">
+            <a href="https://sg1234a.vercel.app/" target="_blank" class="link-btn">
                 🌐 Portfolio Website
             </a>
             <a href="https://www.behance.net/sgdev1" target="_blank" class="link-btn">
@@ -556,25 +579,3 @@
                 ctx.shadowBlur = 15;
                 ctx.shadowColor = '#00ffff';
                 ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Crosshair accent lines
-                ctx.shadowBlur = 0;
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(mouse.x - 22, mouse.y); ctx.lineTo(mouse.x - 14, mouse.y);
-                ctx.moveTo(mouse.x + 14, mouse.y); ctx.lineTo(mouse.x + 22, mouse.y);
-                ctx.moveTo(mouse.x, mouse.y - 22); ctx.lineTo(mouse.x, mouse.y - 14);
-                ctx.moveTo(mouse.x, mouse.y + 14); ctx.lineTo(mouse.x, mouse.y + 22);
-                ctx.stroke();
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
-</body>
-</html>
