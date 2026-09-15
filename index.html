@@ -1,581 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Title -->
-    <title>sgdev HUB | Shubhomoy (sgdev-official)</title>
-    
-    <!-- Standard Meta Tags -->
-    <meta name="description" content="Official portfolio and dev hub of Shubhomoy (sgdev-official) — 12-year-old Full-Stack Developer building AI web apps with HTML, CSS, JavaScript & APIs. Explore SAI, S-Front Studio, and open-source projects!">
-    <meta name="keywords" content="sgdev, sgdev-official, Shubhomoy, Full Stack Developer, 12 year old coder, S-Front Studio, SAI, S-Mario, Web Developer Portfolio, Vercel Apps">
-    <meta name="author" content="Shubhomoy (sgdev-official)">
-    <meta name="robots" content="index, follow">
-
-    <!-- Schema.org Structured Data for Google Search & AI Overview -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Shubhomoy",
-      "alternateName": ["sgdev", "sgdev-official"],
-      "url": "https://sgdev-about-me.vercel.app/",
-      "sameAs": [
-        "https://github.com/sgdev-official",
-        "https://dev.to/sgdev_sg_dev",
-        "https://www.behance.net/sgdev1",
-        "https://www.deviantart.com/sgdev111",
-        "https://www.reddit.com/user/sgdev111"
-      ],
-      "jobTitle": "Full-Stack Web & AI Application Developer"
-    }
-    </script>
-
-    <!-- Open Graph Meta Tags (for WhatsApp, Facebook, LinkedIn previews) -->
-    <meta property="og:title" content="sgdev HUB | Shubhomoy (sgdev-official)">
-    <meta property="og:description" content="Explore projects, downloads, and social links of 12-year-old Full-Stack & AI Developer Shubhomoy (sgdev-official). Download SAI APK/EXE, S-Front Studio & more!">
-    <meta property="og:image" content="s.png">
-    <meta property="og:url" content="https://sgdev-about-me.vercel.app/">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="sgdev HUB | Shubhomoy Portfolio">
-    <meta name="twitter:description" content="Explore projects and tools by Shubhomoy (sgdev-official) — 12-Year-Old Full-Stack Developer.">
-    <meta name="twitter:image" content="s.png">
-
-    <!-- Favicon setting -->
-    <link rel="icon" type="image/x-icon" href="m.ico">
-
-    <style>
-        /* Base Styling & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            cursor: none !important; /* Force custom cursor on every element */
-        }
-
-        html, body {
-            min-height: 100vh;
-            width: 100%;
-            background-color: #050505;
-            color: #ffffff;
-        }
-
-        body {
-            overflow-x: hidden;
-            overflow-y: auto; /* Scrollbar enabled */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 0;
-            opacity: 0;
-            animation: pageFadeIn 1.5s ease-out forwards;
-        }
-
-        /* Page Entrance Animation */
-        @keyframes pageFadeIn {
-            to { opacity: 1; }
-        }
-
-        /* ==========================================
-           CUSTOM GLOWING SCROLLBAR (PRO DARK THEME)
-           ========================================== */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #050505;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00ffff, #ff00ff, #00ff00);
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #ff00ff, #00ffff);
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
-        }
-
-        /* BACKGROUND SETUP - Uses a.webp */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(15,15,25,0.75) 100%),
-                url('a.webp') no-repeat center center/cover;
-            z-index: -2;
-            transition: transform 0.8s ease-out;
-            will-change: transform;
-        }
-
-        body:hover .background-container {
-            transform: scale(1.03);
-        }
-
-        /* JS PARTICLE & CURSOR CANVAS - Always Stay on Top for Cursor Visibility */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 9999; /* Highest priority so cursor never disappears */
-            pointer-events: none; /* Mouse passes through to click links */
-        }
-
-        /* MAIN PROFILE CARD */
-        .profile-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 50px 40px;
-            width: 90%;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: 0 0 60px rgba(0, 255, 255, 0.1), 0 0 20px rgba(255, 0, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            transform: translateY(30px);
-            animation: cardEntrance 1.2s ease-out forwards;
-            animation-delay: 0.3s;
-            margin: auto;
-        }
-
-        @keyframes cardEntrance {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Neon Corner Glows */
-        .profile-card::before, .profile-card::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.5;
-            z-index: -1;
-            animation: glowPulse 8s infinite alternate;
-        }
-
-        .profile-card::before {
-            top: -15px;
-            left: -15px;
-            background: cyan;
-        }
-
-        .profile-card::after {
-            bottom: -15px;
-            right: -15px;
-            background: magenta;
-            animation-delay: 4s;
-        }
-
-        @keyframes glowPulse {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.6); opacity: 0.6; }
-        }
-
-        /* PROFILE LOGO */
-        .profile-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0,0,0,0.3);
-            margin: 0 auto 20px auto;
-            display: block;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            animation: logoSpawn 1s ease-out forwards;
-            animation-delay: 0.8s;
-            opacity: 0;
-        }
-
-        @keyframes logoSpawn {
-            from { opacity: 0; transform: scale(0.5) rotate(-45deg); }
-            to { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
-
-        .profile-card:hover .profile-logo {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 35px rgba(255, 0, 255, 0.4);
-        }
-
-        /* HEADER & TEXT */
-        .header {
-            margin-bottom: 25px;
-        }
-
-        .username {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, #00ffff, #ff00ff, #00ff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            margin-bottom: 8px;
-        }
-
-        .email {
-            font-size: 1rem;
-            color: #b0b0b0;
-            margin-bottom: 15px;
-            opacity: 0.7;
-        }
-
-        .email a {
-            color: #b0b0b0;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .email a:hover {
-            color: cyan;
-        }
-
-        .subtext {
-            font-size: 1.05rem;
-            color: #e0e0e0;
-            max-width: 90%;
-            margin: 0 auto;
-            line-height: 1.5;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        /* SECTION HEADINGS */
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #00ffff;
-            margin: 25px 0 15px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .section-title::before, .section-title::after {
-            content: '';
-            height: 1px;
-            width: 30px;
-            background: rgba(0, 255, 255, 0.4);
-        }
-
-        /* LINKS CONTAINER */
-        .links-container {
-            display: grid;
-            gap: 14px;
-        }
-
-        /* PRO BUTTONS */
-        .link-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px 20px;
-            background: rgba(10, 10, 15, 0.7);
-            border-radius: 14px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            opacity: 0;
-            animation: btnSlideIn 0.8s ease-out forwards;
-        }
-
-        /* Sequential Delays */
-        .link-btn:nth-child(1) { animation-delay: 1.0s; }
-        .link-btn:nth-child(2) { animation-delay: 1.1s; }
-        .link-btn:nth-child(3) { animation-delay: 1.2s; }
-        .link-btn:nth-child(4) { animation-delay: 1.3s; }
-        .link-btn:nth-child(5) { animation-delay: 1.4s; }
-        .link-btn:nth-child(6) { animation-delay: 1.5s; }
-        .link-btn:nth-child(7) { animation-delay: 1.6s; }
-        .link-btn:nth-child(8) { animation-delay: 1.7s; }
-        .link-btn:nth-child(9) { animation-delay: 1.8s; }
-        .link-btn:nth-child(10) { animation-delay: 1.9s; }
-        .link-btn:nth-child(11) { animation-delay: 2.0s; }
-        .link-btn:nth-child(12) { animation-delay: 2.1s; }
-
-        @keyframes btnSlideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .link-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 14px;
-            padding: 2px;
-            background: linear-gradient(90deg, cyan, magenta, green, cyan);
-            background-size: 300% 100%;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .link-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
-            background: rgba(25, 25, 35, 0.9);
-        }
-
-        .link-btn:hover::before {
-            opacity: 1;
-            animation: borderRotate 3s linear infinite;
-        }
-
-        @keyframes borderRotate {
-            100% { background-position: 100% 0; }
-        }
-
-        /* WhatsApp Pulse Effect */
-        .link-btn.whatsapp-btn {
-            background: rgba(18, 140, 126, 0.2);
-            border-color: rgba(37, 211, 102, 0.2);
-            animation: btnSlideIn 0.8s ease-out forwards, whatsappPulse 3s infinite;
-            animation-delay: 1.0s, 4s;
-        }
-
-        .link-btn.whatsapp-btn:hover {
-            background: rgba(37, 211, 102, 0.3);
-        }
-
-        @keyframes whatsappPulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* Download Buttons Special Glow */
-        .link-btn.dl-btn {
-            background: rgba(0, 255, 255, 0.05);
-            border-color: rgba(0, 255, 255, 0.2);
-        }
-
-        .link-btn.dl-btn:hover {
-            background: rgba(0, 255, 255, 0.15);
-        }
-
-        /* FOOTER */
-        .footer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 1px;
-        }
-
-    </style>
-</head>
-<body>
-
-    <!-- Background Image -->
-    <div class="background-container"></div>
-
-    <!-- Particle & Custom Cursor Canvas -->
-    <canvas id="particle-canvas"></canvas>
-
-    <!-- Main Card -->
-    <main class="profile-card">
-        
-        <!-- Profile Logo -->
-        <img src="s.png" alt="sgdev Logo" class="profile-logo">
-
-        <div class="header">
-            <h1 class="username">sgdev</h1>
-            <p class="email"><a href="mailto:sgdev@netc.fr">sgdev@netc.fr</a></p>
-            <p class="subtext">"12-year-old Full-Stack Developer | Building AI web apps with HTML & APIs | Deployed on Vercel"</p>
-        </div>
-
-        <!-- DOWNLOADS SECTION -->
-        <div class="section-title">🚀 Downloads & Projects</div>
-        <div class="links-container">
-            <a href="https://github.com/sgdev-official/sai-fronend/releases/tag/1.0.0" target="_blank" class="link-btn dl-btn">
-                📱 Download SAI (APK for Phone)
-            </a>
-            <a href="https://sourceforge.net/projects/sai/" target="_blank" class="link-btn dl-btn">
-                💻 Download SAI (EXE for PC)
-            </a>
-            <a href="https://sourceforge.net/projects/s-mario/" target="_blank" class="link-btn dl-btn">
-                🍄 Download S-Mario Game
-            </a>
-            <a href="https://sourceforge.net/projects/s-front-studio/" target="_blank" class="link-btn dl-btn">
-                🛠️ S-Front Studio (Wix Killer)
-            </a>
-            <a href="https://www.producthunt.com/posts/s-front_studio/" target="_blank" class="link-btn dl-btn">
-                😸 View S-Front Studio on Product Hunt
-            </a>
-        </div>
-
-        <!-- SOCIALS & PORTFOLIO SECTION -->
-        <div class="section-title">🌐 Connect & Socials</div>
-        <div class="links-container">
-            <a href="https://github.com/sgdev-official" target="_blank" class="link-btn">
-                🐙 GitHub Profile (sgdev-official)
-            </a>
-            <a href="https://whatsapp.com/channel/0029Vb8g3tvGOj9uEIXyhw0b" target="_blank" class="link-btn whatsapp-btn">
-                💬 WhatsApp Channel
-            </a>
-            <a href="https://sg1234a.vercel.app/" target="_blank" class="link-btn">
-                🌐 Portfolio Website
-            </a>
-            <a href="https://www.behance.net/sgdev1" target="_blank" class="link-btn">
-                🎨 Behance Projects
-            </a>
-            <a href="https://www.deviantart.com/sgdev111" target="_blank" class="link-btn">
-                🖼️ DeviantArt Gallery
-            </a>
-            <a href="https://www.reddit.com/user/sgdev111" target="_blank" class="link-btn">
-                🤖 Reddit Profile
-            </a>
-            <a href="https://dev.to/sgdev_sg_dev" target="_blank" class="link-btn">
-                ✍️ Dev.to Articles
-            </a>
-        </div>
-
-        <footer class="footer">
-            © Shubhomoy | SGDEV Hub PRO
-        </footer>
-    </main>
-
-    <!-- JavaScript Interactive Code -->
-    <script>
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        let mouse = { x: null, y: null, active: false };
-        const colors = ['#00ffff', '#ff00ff', '#00ff00', '#ffffff'];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            mouse.active = true;
-            for(let i=0; i<3; i++) {
-                createParticle(mouse.x, mouse.y, true);
-            }
-        });
-
-        window.addEventListener('mouseleave', () => {
-            mouse.active = false;
-        });
-
-        class Particle {
-            constructor(x, y, isTrail) {
-                this.x = x;
-                this.y = y;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                
-                if (isTrail) {
-                    this.size = Math.random() * 6 + 2;
-                    this.speedX = (Math.random() - 0.5) * 2;
-                    this.speedY = (Math.random() - 0.5) * 2;
-                    this.life = 1;
-                    this.decay = Math.random() * 0.03 + 0.03;
-                } else {
-                    this.size = Math.random() * 2.5 + 0.5;
-                    this.speedX = (Math.random() - 0.5) * 0.6;
-                    this.speedY = (Math.random() - 0.5) * 0.6;
-                    this.life = 1;
-                    this.decay = Math.random() * 0.004 + 0.001;
-                }
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life -= this.decay;
-                if (this.size > 0.1) this.size -= 0.02;
-            }
-
-            draw() {
-                ctx.globalAlpha = Math.max(0, this.life);
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, Math.max(0, this.size), 0, Math.PI * 2);
-                ctx.fill();
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
-            }
-        }
-
-        function createParticle(x, y, isTrail) {
-            particles.push(new Particle(x, y, isTrail));
-        }
-
-        setInterval(() => {
-            if (particles.length < 180 && mouse.active) {
-                 createParticle(mouse.x + (Math.random()-0.5)*40, mouse.y + (Math.random()-0.5)*40, false);
-            } else if (particles.length < 90) {
-                createParticle(Math.random() * canvas.width, Math.random() * canvas.height, false);
-            }
-        }, 100);
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.shadowBlur = 0;
-
-            // Draw Background Particles First
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                if (particles[i].life <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-            
-            // Draw Custom Cursor on TOP
-            if (mouse.active) {
-                ctx.globalAlpha = 1;
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.lineWidth = 1.8;
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 14, 0, Math.PI * 2);
-                ctx.stroke();
-                
-                // Inner Glowing Dot
-                ctx.fillStyle = '#00ffff';
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = '#00ffff';
-                ctx.beginPath();
+<!doctype html><html lang=en><head><meta charset=utf-8><title>Shubhomoy (Sgdev) — Full-Stack & AI Application Developer</title><meta name=description content="Shubhomoy (Sgdev) — 12-year-old Full-Stack Web & AI Developer. Creator of S-Captcha, SAI AI, and high-performance edge applications hosted on Vercel."><meta name=keywords content="Shubhomoy, Sgdev, Shubhomoy Artificial Intelligence, S-Captcha, Scaptua, Full Stack Developer, Vercel Edge, Zero DB Captcha"><meta name=author content="Shubhomoy (Sgdev)"><meta name=viewport content="width=device-width, initial-scale=1"><meta property=og:title content="Shubhomoy (Sgdev) — Full-Stack & AI Developer"><meta property=og:description content="Building zero-db security systems, AI chatbots, and high-authority edge web architectures."><meta property=og:type content=website><meta property=og:url content=https://sg1234a.vercel.app><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel=stylesheet><link href=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css><script type=application/ld+json>{
+"@context": "https://schema.org",
+"@type": "Person",
+"name": "Shubhomoy",
+"alternateName": ["Sgdev", "Shubhomoy Developer"],
+"jobTitle": "Full-Stack Web & AI Application Developer",
+"url": "https://sg1234a.vercel.app",
+"sameAs": [
+"https://github.com/sgdev-official",
+"https://sourceforge.net/u/sgdev/profile/"
+],
+"knowsAbout": ["Python", "FastAPI", "Flask", "CSS3", "HTML5", "SEO Optimization", "DNS Architecture", "AI Web Applications", "Zero-Database Security Systems"]
+}</script><style>:root{--ink:#0f1320;--panel:#171c2c;--panel-2:#1e2438;--line:rgba(255,255,255,.08);--text:#c8cde0;--text-dim:#7c85a8;--white:#f3f5fb;--add:#5eead4;--add-dim:rgba(94,234,212,.12);--del:#fb7185;--amber:#f0b429;--font-mono:'JetBrains Mono',monospace;--font-sans:'Inter',sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--text);font-family:var(--font-sans);line-height:1.7;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}::selection{background:var(--add);color:#06262a}.mono{font-family:var(--font-mono)}.container-narrow{max-width:1160px;margin:0 auto;padding:0 22px}.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,black,transparent 75%);mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,black,transparent 75%);animation:drift 16s linear infinite}@keyframes drift{0%{background-position:0 0,0 0}100%{background-position:42px 42px,42px 42px}}.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;pointer-events:none;animation:float 7s ease-in-out infinite;z-index:0}.orb.o1{width:10px;height:10px;background:var(--add);top:22%;left:10%;animation-delay:0s}.orb.o2{width:6px;height:6px;background:var(--white);top:66%;left:6%;animation-delay:1.4s}.orb.o3{width:14px;height:14px;background:var(--amber);top:28%;left:90%;animation-delay:.7s}.orb.o4{width:8px;height:8px;background:var(--add);top:78%;left:82%;animation-delay:2.1s}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}.line-dec{width:60px;height:3px;background:rgba(255,255,255,.15);margin:22px 0;position:relative;overflow:hidden;border-radius:2px}.line-dec::after{content:'';position:absolute;inset:0;background:var(--add);animation:scan 2.4s ease-in-out infinite}@keyframes scan{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}.section-angled{background:radial-gradient(circle at 18% 20%,rgba(94,234,212,.10),transparent 45%),radial-gradient(circle at 84% 78%,rgba(240,180,41,.08),transparent 50%),linear-gradient(160deg,#0b0e18 0%,#141a2c 55%,#171c2e 100%);overflow:hidden}.section-angled.cut-down{clip-path:polygon(0 0,100% 0,100% 100%,0 96%)}.section-angled.cut-up{clip-path:polygon(0 4%,100% 0,100% 96%,0 100%)}.section-angled.cut-both{clip-path:polygon(0 4%,100% 0,100% 100%,0 96%)}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}.stagger>*{transition-delay:calc(var(--i,0)*100ms)}.hunk{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--add);background:var(--add-dim);border:1px solid rgba(94,234,212,.25);padding:5px 12px;border-radius:6px;letter-spacing:.3px}.section-title{font-size:clamp(26px,3.4vw,38px);font-weight:800;color:var(--white);margin:16px 0 0;letter-spacing:-.02em}.section-sub{color:var(--text-dim);max-width:60ch;margin-top:14px;font-size:15px}section{position:relative;z-index:1;padding:118px 0}.tabbar{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(15,19,32,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:padding .3s ease}.tabbar .navbar{padding:16px 0}.tabbar.solid .navbar{padding:10px 0}.browser-dots{display:flex;gap:6px;margin-right:14px}.browser-dots i{width:9px;height:9px;border-radius:50%;display:block}.browser-dots i:nth-child(1){background:#fb7185}.browser-dots i:nth-child(2){background:#f0b429}.browser-dots i:nth-child(3){background:#5eead4}.brand-tag{font-family:var(--font-mono);font-weight:700;color:var(--white);font-size:15px;display:flex;align-items:center}.brand-tag .path{color:var(--text-dim);font-weight:400}.nav-link-custom{font-family:var(--font-mono);font-size:13px;color:var(--text-dim)!important;padding:8px 4px!important;margin:0 14px;position:relative;transition:color .25s}.nav-link-custom:hover{color:var(--white)!important}.nav-link-custom::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--add);transition:width .3s ease}.nav-link-custom:hover::after{width:100%}.btn-diff{font-family:var(--font-mono);font-size:12.5px;font-weight:600;background:var(--add);color:#06262a;border:none;border-radius:7px;padding:9px 18px;transition:transform .25s ease,box-shadow .25s ease}.btn-diff:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(94,234,212,.45);color:#06262a}.btn-ghost{font-family:var(--font-mono);font-size:12.5px;font-weight:600;color:var(--white);border:1px solid var(--line);border-radius:7px;padding:9px 18px;transition:.25s}.btn-ghost:hover{border-color:var(--add);color:var(--add)}.hero{padding:190px 0 130px;min-height:100vh;display:flex;align-items:center}.kicker{font-family:var(--font-mono);font-size:12.5px;color:var(--add);letter-spacing:1px}.kicker::before{content:'// ';color:var(--text-dim)}.hero h1{font-size:clamp(34px,5.2vw,58px);font-weight:800;color:var(--white);letter-spacing:-.03em;line-height:1.08;margin:18px 0 0}.hero h1 .accent{color:var(--add)}.hero p.lead-txt{color:var(--text-dim);font-size:16px;max-width:48ch;margin-top:20px}.hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}.terminal{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}.terminal-head{display:flex;align-items:center;padding:11px 14px;background:var(--panel-2);border-bottom:1px solid var(--line)}.terminal-title{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);margin-left:auto;margin-right:auto}.terminal-body{padding:22px;font-family:var(--font-mono);font-size:13px;min-height:240px}.terminal-body .prompt{color:var(--add)}.terminal-body .cmd{color:var(--white)}.terminal-body .out-line{color:var(--text-dim);margin:5px 0}.terminal-body .out-line b{color:var(--white);font-weight:600}.terminal-body .out-line .badge-tag{background:var(--add-dim);color:var(--add);padding:2px 6px;border-radius:4px;font-size:11px}.cursor{display:inline-block;width:7px;height:15px;background:var(--add);margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}.diff-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-family:var(--font-mono)}.diff-row{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);transform:translateX(-16px);opacity:0;transition:.5s}.diff-row.in{transform:none;opacity:1}.diff-row:last-child{border-bottom:none}.diff-row .plus{color:var(--add);font-weight:700}.diff-row .diff-text{color:var(--text);font-size:13.5px}.diff-row .diff-text b{color:var(--white)}.diff-row:hover{background:var(--add-dim)}.about-term{width:270px;height:270px;border-radius:50%;margin:0 auto;overflow:hidden;position:relative;border:4px solid rgba(255,255,255,.1);box-shadow:0 30px 60px -20px rgba(0,0,0,.65);background:conic-gradient(from 0deg,var(--add),var(--amber),#1e2438,var(--add));display:flex;align-items:center;justify-content:center;animation:spin 12s linear infinite}.about-term span{font-family:var(--font-mono);font-weight:800;font-size:54px;color:var(--white);width:230px;height:230px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;text-shadow:0 0 30px rgba(94,234,212,.35);animation:spin-rev 12s linear infinite}@keyframes spin{100%{transform:rotate(360deg)}}@keyframes spin-rev{100%{transform:rotate(-360deg)}}.stat-block{border-left:2px solid var(--line);padding-left:16px}.stat-block b{display:block;font-size:22px;color:var(--white);font-family:var(--font-mono)}.stat-block span{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}.proj-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s ease,box-shadow .4s ease;height:100%}.proj-card:hover{transform:translateY(-8px);border-color:rgba(94,234,212,.35);box-shadow:0 30px 60px -30px rgba(94,234,212,.25)}.proj-screen{height:180px;position:relative;overflow:hidden;background:var(--panel-2);border-bottom:1px solid var(--line)}.proj-screen .ps-dots{display:flex;gap:5px;position:absolute;top:12px;left:14px;z-index:2}.proj-screen .ps-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18)}.proj-body{padding:22px}.proj-body .kind{font-family:var(--font-mono);font-size:10.5px;color:var(--add);text-transform:uppercase;letter-spacing:1px}.proj-body h4{font-size:17px;color:var(--white);font-weight:700;margin:8px 0 0}.proj-body p{margin-top:10px;font-size:13.5px;color:var(--text-dim)}.proj-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}.proj-tags span{font-family:var(--font-mono);background:var(--panel-2);border:1px solid var(--line);color:var(--text-dim);font-size:10px;padding:3px 9px;border-radius:20px}.proj-visit{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:11px;font-weight:700;font-family:var(--font-mono);letter-spacing:.5px;color:var(--add)}.chat-mock{padding:16px 14px 0;height:100%;display:flex;flex-direction:column;gap:8px;justify-content:flex-end}.bubble{max-width:78%;padding:7px 11px;border-radius:12px;font-size:10.5px;line-height:1.4}.bubble.bot{background:rgba(255,255,255,.07);color:var(--text);align-self:flex-start;border-bottom-left-radius:2px}.bubble.user{background:var(--add);color:#06262a;align-self:flex-end;border-bottom-right-radius:2px;font-weight:600}.typing{display:flex;gap:4px;align-self:flex-start;background:rgba(255,255,255,.07);padding:8px 12px;border-radius:12px}.typing i{width:5px;height:5px;border-radius:50%;background:var(--text-dim);animation:bounce 1.2s infinite ease-in-out}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}.captcha-mock{padding:16px;height:100%;display:flex;flex-direction:column;justify-content:center;gap:10px;align-items:center}.captcha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:118px}.captcha-tile{width:100%;padding-top:100%;position:relative;border-radius:3px;background:rgba(255,255,255,.06);cursor:pointer;transition:.25s}.captcha-tile.picked{background:var(--add)}.captcha-tile.picked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#06262a;font-size:12px;font-weight:800}.captcha-row{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);padding:6px 12px;border-radius:6px}.captcha-box.checked{background:var(--add);width:14px;height:14px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;color:#06262a;font-size:10px;font-weight:800}.speed-mock{padding:14px;height:100%;display:flex;align-items:center;justify-content:center}.gauge{position:relative;width:118px;height:118px}.gauge svg{transform:rotate(-90deg);width:100%;height:100%}.gauge circle{fill:none;stroke-width:8}.gauge .track{stroke:rgba(255,255,255,.08)}.gauge .fill{stroke:var(--add);stroke-linecap:round;stroke-dasharray:326;stroke-dashoffset:326;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}.gauge-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--white)}.gauge-label b{font-size:20px;line-height:1;font-family:var(--font-mono)}.gauge-label span{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--add);margin-top:3px}.commit-line{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);transform:translateX(-14px);opacity:0;transition:.5s}.commit-line.in{transform:none;opacity:1}.commit-line:last-child{border-bottom:none}.commit-hash{font-family:var(--font-mono);color:var(--amber);font-size:12.5px;flex:0 0 64px}.commit-msg{font-size:13.5px;color:var(--text)}.commit-msg b{color:var(--white)}blockquote.quote{margin:28px 0 0;padding-left:18px;border-left:3px solid var(--add);color:var(--white);font-size:15px;font-style:italic}.heat-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}.heat-wrap .hm-label{font-family:var(--font-mono);color:var(--add);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}.heatmap{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}.heatmap i{display:block;width:100%;padding-top:100%;border-radius:2px;background:rgba(255,255,255,.05);animation:pulse-cell 3.6s infinite}@keyframes pulse-cell{0%,100%{background:rgba(255,255,255,.05)}50%{background:var(--cell,#5eead4)}}.connect-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:30px 24px;text-align:center;position:relative;overflow:hidden;transition:.3s}.connect-card:hover{transform:translateY(-6px);border-color:rgba(94,234,212,.35);box-shadow:0 26px 50px -28px rgba(94,234,212,.3)}.connect-card .cic{width:54px;height:54px;border-radius:50%;background:var(--panel-2);color:var(--add);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px;transition:.3s}.connect-card:hover .cic{background:var(--add);color:#06262a}.connect-card h4{font-size:14px;color:var(--white);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-family:var(--font-mono)}.connect-card p{word-break:break-all;font-size:13px;color:var(--text-dim)}.connect-card .go{display:inline-block;margin-top:14px;font-size:11px;color:var(--add);font-family:var(--font-mono);letter-spacing:.5px;font-weight:700}footer{background:var(--panel);border-top:1px solid var(--line);padding:34px 0}footer .foot-links a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;color:var(--text);transition:.25s;margin-left:8px}footer .foot-links a:hover{background:var(--add);border-color:var(--add);color:#06262a;transform:translateY(-3px)}footer p{color:var(--text-dim);font-size:12px;margin:0;font-family:var(--font-mono)}</style></head><body><div class=bg-grid></div><header class=tabbar id=siteHeader><nav class="navbar navbar-expand-lg"><div class=container-narrow><a class="navbar-brand brand-tag d-flex align-items-center" href=#top><span class=browser-dots><i></i><i></i><i></i></span>shubhomoy<span class=path>.dev</span></a><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navMenu><span class=navbar-toggler-icon style=filter:invert(1);></span></button><div class="collapse navbar-collapse justify-content-end" id=navMenu><ul class="navbar-nav align-items-lg-center"><li class=nav-item><a class="nav-link nav-link-custom" href=#about>about</a></li><li class=nav-item><a class="nav-link nav-link-custom" href=#skills>skills</a></li><li class=nav-item><a class="nav-link nav-link-custom" href=#work>work</a></li><li class="nav-item ms-lg-2 mt-3 mt-lg-0"><a class=btn-diff href=#connect>connect →</a></li></ul></div></div></nav></header><main id=top><section class="hero section-angled cut-down" id=hero><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="orb o4"></span><div class=container-narrow style=position:relative;z-index:1;><div class="row align-items-center g-5"><div class="col-lg-6 reveal in"><span class=kicker>Full-Stack & AI Application Developer</span><h1>Building high-impact systems on the <span class=accent>Edge</span>.</h1><div class=line-dec></div><p class=lead-txt>I'm Shubhomoy (Sgdev), a 12-year-old Full-Stack Web & AI Developer. I engineer zero-database captcha engines, custom AI chat interfaces, and high-authority edge deployment architecture hosted on Vercel.</p><div class=hero-cta><a href=#work class=btn-diff>explore ecosystem →</a><a href=#connect class=btn-ghost>get in touch</a></div></div><div class="col-lg-6 reveal in" style=transition-delay:.15s><div class=terminal><div class=terminal-head><span class=browser-dots><i></i><i></i><i></i></span><span class=terminal-title>sgdev@vercel-edge: ~</span></div><div class=terminal-body id=terminalBody><div><span class=prompt>$</span><span class=cmd id=typedCmd></span><span class=cursor id=typeCursor></span></div><div id=terminalOut style=margin-top:10px;></div></div></div></div></div></div></section><section id=skills><div class=container-narrow><div class=reveal><span class=hunk>@@ architecture.diff @@</span><h3 class=section-title>Battle-Tested Tech Stack</h3><p class=section-sub>Tools, security layers, and network infrastructure I build with every day.</p></div><div class="diff-card mt-5 reveal"><div class=diff-row data-i=0><span class=plus>+</span><span class=diff-text><b>Backend Core —</b> Python (FastAPI / Flask) hosted on Render & Vercel Edge Serverless functions.</span></div><div class=diff-row data-i=1><span class=plus>+</span><span class=diff-text><b>Zero-Database Auth —</b> Google Sheets API DB + HMAC SHA-256 IP hashing & 12-hour Apps Script auto-clean.</span></div><div class=diff-row data-i=2><span class=plus>+</span><span class=diff-text><b>High-Authority SEO —</b> Structured Schema JSON-LD, Subdomain-of-subdomain isolation, & AI Overview Hijacking.</span></div><div class=diff-row data-i=3><span class=plus>+</span><span class=diff-text><b>Edge Infrastructure —</b> Vercel (DR 92+ Edge Network), ClouDNS zone routing, & GitHub Actions Cron (ping.yml).</span></div></div></div></section><section id=about class="section-angled cut-both"><span class="orb o1"></span><span class="orb o3"></span><div class=container-narrow style=position:relative;z-index:1;><div class="row align-items-center g-5"><div class="col-lg-4 reveal"><div class=about-term><span>SG</span></div></div><div class="col-lg-8 reveal" style=transition-delay:.1s><span class=hunk>whoami --verbose</span><h3 class=section-title>Code, Systems & Algorithm Manipulation</h3><p class=section-sub style=max-width:62ch;>I'm Shubhomoy (Sgdev), a developer driven by hands-on experimentation rather than theoretical textbooks. From constructing a 3-layer Zero-Database Captcha system (S-Captcha) to running 12,000+ backlink network experiments, I focus on building resilient software, bypassing standard indexing bottlenecks, and consolidating verified authority under Vercel infrastructure.</p><div class="row mt-4 g-4"><div class=col-4><div class=stat-block><b>DR 92+</b><span>Vercel Primary Hub</span></div></div><div class=col-4><div class=stat-block><b>100/100</b><span>SEO Health Score</span></div></div><div class=col-4><div class=stat-block><b>24/7</b><span>Cron Automation</span></div></div></div></div></div></div></section><section id=work><div class=container-narrow><div class=reveal><span class=hunk>ls ./flagship-projects</span><h3 class=section-title>Flagship Applications</h3><p class=section-sub>Active open-source tools and web platforms in my development pipeline.</p></div><div class="row g-4 mt-3 stagger"><div class="col-md-6 col-lg-4 reveal" style=--i:0><a class="proj-card d-block text-decoration-none" href=https://scaptua.duckdns.org target=_blank rel=noopener><div class=proj-screen><div class=ps-dots><i></i><i></i><i></i></div><div class=captcha-mock><div class=captcha-grid id=captchaGrid></div><div class=captcha-row><span class="captcha-box checked">✓</span><span>Honeypot Smart Captcha</span></div></div></div><div class=proj-body><span class=kind>Security Engine</span><h4>S-Captcha (Shubhomoy Captcha)</h4><p>Zero-database 3-layer captcha engine (Smart Invisible, Text, Image Honeypot). SHA-256 encrypted IP rate-limiting.</p><div class=proj-tags><span>Python</span><span>FastAPI</span><span>SHA-256</span><span>OAuth</span></div><span class=proj-visit>scaptua.duckdns.org <i class="bi bi-arrow-up-right"></i></span></div></a></div><div class="col-md-6 col-lg-4 reveal" style=--i:1><a class="proj-card d-block text-decoration-none" href=https://sai-official.duckdns.org target=_blank rel=noopener><div class=proj-screen><div class=ps-dots><i></i><i></i><i></i></div><div class=chat-mock><div class="bubble bot">SAI Initialized. How can I assist?</div><div class="bubble user">Analyze Vercel Edge performance</div><div class=typing><i></i><i></i><i></i></div></div></div><div class=proj-body><span class=kind>AI Application</span><h4>SAI (Shubhomoy AI)</h4><p>Custom conversational AI interface fine-tuned for rapid query resolution, code snippet processing, and developer support.</p><div class=proj-tags><span>AI</span><span>Web Application</span><span>Fast Response</span></div><span class=proj-visit>sai-official.duckdns.org <i class="bi bi-arrow-up-right"></i></span></div></a></div><div class="col-md-6 col-lg-4 reveal" style=--i:2><a class="proj-card d-block text-decoration-none" href=https://velocityofficity.duckdns.org target=_blank rel=noopener><div class=proj-screen><div class=ps-dots><i></i><i></i><i></i></div><div class=speed-mock><div class=gauge id=gauge1><svg viewBox="0 0 118 118"><circle class=track cx=59 cy=59 r=52></circle><circle class=fill cx=59 cy=59 r=52></circle></svg><div class=gauge-label><b id=mbps>0</b><span>Mbps</span></div></div></div></div><div class=proj-body><span class=kind>Network Utility</span><h4>Velocity Officity</h4><p>Real-time edge network latency and bandwidth testing utility with zero bloat and lightweight client-side measurements.</p><div class=proj-tags><span>Networking</span><span>Latency Test</span><span>JavaScript</span></div><span class=proj-visit>velocityofficity.duckdns.org <i class="bi bi-arrow-up-right"></i></span></div></a></div></div><div class="text-center mt-5 reveal"><a href=https://github.com/sgdev-official class=btn-ghost target=_blank rel=noopener>View Full Codebase on GitHub →</a></div></div></section><section class="section-angled cut-up"><span class="orb o2"></span><span class="orb o4"></span><div class=container-narrow style=position:relative;z-index:1;><div class="row g-5 align-items-start"><div class="col-lg-7 reveal"><span class=hunk>git log --oneline --graph</span><h3 class=section-title>Development Timeline & Milestones</h3><p class=section-sub style=max-width:56ch;>From early HTML/CSS tinkering to building automated backend pipelines, here is the short log of my continuous shipping journey.</p><blockquote class=quote>"Practical experimentation and broken code teach what no textbook ever can."</blockquote><div class=mt-4 id=commitLog><div class=commit-line data-i=0><span class=commit-hash>v1.0.0</span><span class=commit-msg><b>Migration:</b> Pivoted to Vercel (sg1234a.vercel.app) for DR 92+ edge stability</span></div><div class=commit-line data-i=1><span class=commit-hash>v0.9.4</span><span class=commit-msg><b>S-Captcha:</b> Implemented 3-layer security & Render Python backend</span></div><div class=commit-line data-i=2><span class=commit-hash>v0.8.1</span><span class=commit-msg><b>SEO Sandbox:</b> Executed 12k backlink experiment & AI Overview indexing</span></div><div class=commit-line data-i=3><span class=commit-hash>v0.1.0</span><span class=commit-msg><b>Hello World:</b> Wrote first lines of HTML, Inline CSS, and Python scripts</span></div></div></div><div class="col-lg-5 reveal" style=transition-delay:.1s><div class=heat-wrap><div class=hm-label>R&D & Commit Activity — Last 365 Days</div><div class=heatmap id=heatmap></div></div></div></div></div></section><section id=connect><div class=container-narrow><div class=reveal><span class=hunk>contact --init</span><h3 class=section-title>Connect with Sgdev</h3><p class=section-sub>Reach out for technical collaborations, API integrations, or software architecture discussions.</p></div><div class="row g-4 mt-4 stagger"><div class=col-md-4><a class="connect-card d-block text-decoration-none reveal" href=mailto:sgdev@netc.fr><div class=cic><i class="bi bi-envelope"></i></div><h4>Primary Email</h4><p>sgdev@netc.fr</p><span class=go>Send Email →</span></a></div><div class=col-md-4><a class="connect-card d-block text-decoration-none reveal" href=https://github.com/sgdev-official target=_blank rel=noopener><div class=cic><i class="bi bi-github"></i></div><h4>GitHub Profile</h4><p>github.com/sgdev-official</p><span class=go>View Repositories →</span></a></div><div class=col-md-4><a class="connect-card d-block text-decoration-none reveal" href=https://sourceforge.net/u/sgdev/profile/ target=_blank rel=noopener><div class=cic><i class="bi bi-diagram-3"></i></div><h4>SourceForge</h4><p>sourceforge.net/u/sgdev</p><span class=go>View Releases →</span></a></div></div></div></section></main><footer><div class="container-narrow d-flex align-items-center justify-content-between flex-wrap gap-3"><span class=brand-tag style=color:var(--white);>shubhomoy<span class=path>.dev</span></span><div class=foot-links><a href=mailto:sgdev@netc.fr aria-label=Email><i class="bi bi-envelope"></i></a><a href=https://github.com/sgdev-official target=_blank rel=noopener aria-label=GitHub><i class="bi bi-github"></i></a><a href=https://sourceforge.net/u/sgdev/profile/ target=_blank rel=noopener aria-label=SourceForge><i class="bi bi-diagram-3"></i></a></div><p>© 2026 Shubhomoy (Sgdev). Edge Architecture & Security.</p></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js></script><script>(function(){
+var header = document.getElementById('siteHeader');
+function onScroll(){
+if(window.scrollY > 40){ header.classList.add('solid'); }
+else{ header.classList.remove('solid'); }
+}
+document.addEventListener('scroll', onScroll, {passive:true});
+var cmd = "whoami --identity --status";
+var out = [
+'name    : <b>Shubhomoy (Sgdev)</b>',
+'title   : Full-Stack & AI App Developer',
+'status  : <span class="badge-tag">R&D Break / Active Engine Tuning</span>',
+'primary : <b>sg1234a.vercel.app</b> (DR 92+)',
+'security: S-Captcha (3-Layer Zero-DB)'
+];
+var typedEl = document.getElementById('typedCmd');
+var outEl = document.getElementById('terminalOut');
+var cursorEl = document.getElementById('typeCursor');
+function typeCommand(){
+var i = 0;
+var iv = setInterval(function(){
+typedEl.textContent = cmd.slice(0, i+1);
+i++;
+if(i >= cmd.length){
+clearInterval(iv);
+setTimeout(printOutput, 260);
+}
+}, 50);
+}
+function printOutput(){
+var i = 0;
+function next(){
+if(i >= out.length){ if(cursorEl){cursorEl.style.opacity='0';} return; }
+var line = document.createElement('div');
+line.className = 'out-line';
+line.innerHTML = out[i];
+outEl.appendChild(line);
+i++;
+setTimeout(next, 200);
+}
+next();
+}
+setTimeout(typeCommand, 400);
+var gaugeFired = false;
+function fireGauge(){
+if(gaugeFired) return;
+gaugeFired = true;
+var fillEl = document.querySelector('#gauge1 .fill');
+var mbpsEl = document.getElementById('mbps');
+if(fillEl){ fillEl.style.strokeDashoffset = (326 - 326*0.86); }
+if(mbpsEl){
+var start = null, dur = 1400;
+function step(ts){
+if(!start) start = ts;
+var p = Math.min(1, (ts-start)/dur);
+mbpsEl.textContent = Math.round(340 * p);
+if(p < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+}
+var revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+var io = new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){
+entry.target.classList.add('in');
+io.unobserve(entry.target);
+if(entry.target.querySelector && entry.target.querySelector('#gauge1')){ fireGauge(); }
+if(entry.target.classList.contains('diff-card')){
+entry.target.querySelectorAll('.diff-row').forEach(function(k, idx){ setTimeout(function(){ k.classList.add('in'); }, idx*120); });
+}
+if(entry.target.id === 'commitLog'){
+entry.target.querySelectorAll('.commit-line').forEach(function(k, idx){ setTimeout(function(){ k.classList.add('in'); }, idx*120); });
+}
+}
+});
+}, {threshold:.15});
+revealEls.forEach(function(el){ io.observe(el); });
+var commitLog = document.getElementById('commitLog');
+if(commitLog){ io.observe(commitLog); }
+} else {
+revealEls.forEach(function(el){ el.classList.add('in'); });
+fireGauge();
+}
+var grid = document.getElementById('captchaGrid');
+var preset = [1,4,6];
+for(var g=0; g<9; g++){
+var tile = document.createElement('div');
+tile.className = 'captcha-tile' + (preset.indexOf(g) > -1 ? ' picked' : '');
+tile.addEventListener('click', function(){ this.classList.toggle('picked'); });
+grid.appendChild(tile);
+}
+var hm = document.getElementById('heatmap');
+var colors = ['rgba(94,234,212,.35)','rgba(94,234,212,.6)','rgba(94,234,212,.85)','#5eead4'];
+for(var i=0;i<14*7;i++){
+var cell = document.createElement('i');
+if(Math.random() > 0.35){
+cell.style.setProperty('--cell', colors[Math.floor(Math.random()*colors.length)]);
+cell.style.animationDelay = (Math.random()*3.6).toFixed(2)+'s';
+}
+hm.appendChild(cell);
+}
+})();</script></body></html>
